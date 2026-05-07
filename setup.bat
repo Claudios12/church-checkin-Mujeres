@@ -1,9 +1,9 @@
 @echo off
-title Parejas Event - Setup
+title Mujeres Event - Setup
 cd /d "%~dp0"
 
 echo ============================================
-echo   Parejas Event - Setup
+echo   Mujeres Event - Setup
 echo ============================================
 echo.
 
@@ -34,17 +34,17 @@ echo [OK] Bun
 echo.
 
 :: ── Clone or update ──────────────────────────
-if exist "church-checkin-parejas" (
-    cd church-checkin-parejas
+if exist "church-checkin-Mujeres" (
+    cd church-checkin-Mujeres
     git pull
 ) else (
-    git clone https://github.com/Claudios12/church-checkin-parejas
+    git clone https://github.com/Claudios12/church-checkin-Mujeres
     if %errorlevel% neq 0 (
         echo ERROR: git clone failed.
         pause
         exit /b 1
     )
-    cd church-checkin-parejas
+    cd church-checkin-Mujeres
 )
 
 :: ── .env ─────────────────────────────────────

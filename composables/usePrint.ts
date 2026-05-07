@@ -1,75 +1,103 @@
-export interface CoupleData {
-  manName: string
-  manLastName: string
-  womanName: string
-  womanLastName: string
+export interface AttendeeData {
+  firstName: string
+  middleName: string
+  lastName: string
 }
 
 export const usePrint = () => {
-  const printCoupleStickers = (couple: CoupleData) => {
-    const coupleLine = `${couple.manName.toUpperCase()} ${couple.manLastName.toUpperCase()} Y ${couple.womanName.toUpperCase()} ${couple.womanLastName.toUpperCase()}`
+  const printStickers = (attendee: AttendeeData) => {
+    const nameLine = [attendee.firstName, attendee.middleName, attendee.lastName]
+      .filter(Boolean)
+      .join(' ')
+      .toUpperCase()
 
     const stickerHTML = `
-      <div class="couple-sticker">
-        <img src="/Bg_Sticker_Parejas.jpg" class="couple-sticker-bg" alt="" />
-        <div class="couple-name-overlay">
-          <span class="couple-names">${coupleLine}</span>
+      <div class="sticker">
+        <div class="sticker-header">
+          <span class="event-title">MUJERES M&amp;M</span>
+          <span class="event-subtitle">Diseñadas para ascender</span>
         </div>
+        <div class="name-box">
+          <span class="attendee-name">${nameLine}</span>
+        </div>
+        <div class="sticker-footer">Cima Iglesia · Mayo 22, 2026</div>
       </div>
     `
 
-    const coupleCSS = `
+    const stickerCSS = `
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font-family: Arial, sans-serif; background: white; }
-      .couple-sticker {
-        position: relative;
+      .sticker {
         width: 101.6mm;
         height: 50.8mm;
+        background: #ec4899;
+        border: 1.5pt solid #be185d;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2mm;
+        padding: 4mm;
         page-break-after: always;
         page-break-inside: avoid;
-        overflow: hidden;
       }
-      .couple-sticker:last-child { page-break-after: avoid; }
-      .couple-sticker-bg {
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        display: block;
+      .sticker:last-child { page-break-after: avoid; }
+      .sticker-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5mm;
       }
-      .couple-name-overlay {
-        position: absolute;
-        top: 52%;
-        left: 5%;
+      .event-title {
+        font-size: 13pt;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .event-subtitle {
+        font-size: 7pt;
+        color: rgba(255,255,255,0.85);
+        letter-spacing: 0.5px;
+      }
+      .name-box {
+        background: white;
+        border-radius: 3mm;
+        padding: 2mm 6mm;
         width: 90%;
-        transform: translateY(-50%);
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 17%;
+        min-height: 10mm;
       }
-      .couple-names {
-        font-size: 9pt;
+      .attendee-name {
+        font-size: 11pt;
         font-weight: bold;
-        color: #000;
+        color: #1f2937;
         text-align: center;
         text-transform: uppercase;
-        line-height: 1.2;
+        letter-spacing: 0.5px;
+      }
+      .sticker-footer {
+        font-size: 6pt;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 0.5px;
       }
     `
 
     const printContainer = document.createElement('div')
-    printContainer.id = 'couple-sticker-print-container'
-    printContainer.innerHTML = stickerHTML + stickerHTML
+    printContainer.id = 'sticker-print-container'
+    printContainer.innerHTML = stickerHTML
 
     const printStyle = document.createElement('style')
-    printStyle.id = 'couple-sticker-print-styles'
+    printStyle.id = 'sticker-print-styles'
     printStyle.textContent = `
       @page { size: 101.6mm 152.4mm; margin: 0; }
-      #couple-sticker-print-container { display: none; }
+      #sticker-print-container { display: none; }
       @media print {
-        body > *:not(#couple-sticker-print-container) { display: none !important; }
-        #couple-sticker-print-container { display: block !important; }
-        ${coupleCSS}
+        body > *:not(#sticker-print-container) { display: none !important; }
+        #sticker-print-container { display: block !important; }
+        ${stickerCSS}
       }
     `
 
@@ -85,7 +113,5 @@ export const usePrint = () => {
     setTimeout(() => window.print(), 100)
   }
 
-  return {
-    printCoupleStickers,
-  }
+  return { printStickers }
 }

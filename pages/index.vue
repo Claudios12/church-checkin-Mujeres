@@ -1,63 +1,77 @@
 <template>
-  <div class="min-h-screen bg-black py-8 px-4">
+  <div class="min-h-screen bg-pink-500 py-8 px-4">
     <!-- Header -->
     <header class="text-center mb-8">
-      <img
-        src="/Logo_LibresParaAmar.png"
-        alt="Libres para Amar"
-        class="mx-auto h-24 mb-4"
-        @error="($event.target as HTMLImageElement).style.display = 'none'"
-      />
       <h1 class="text-3xl font-bold text-white uppercase tracking-wide">
-        Un Ascenso con Propósito
+        Mujeres M&amp;M
       </h1>
-      <p class="text-lg text-gray-400 mt-1">Marzo 28, 2026 &nbsp;·&nbsp; Punto de Partida</p>
+      <p class="text-lg text-white mt-1">Diseñadas para ascender</p>
     </header>
 
     <!-- Main Content -->
     <main>
-      <CoupleCheckInForm
-        v-if="!showPreview"
+      <CheckInForm
+        v-show="phase === 'form'"
         ref="formRef"
-        @submit="handleSubmit"
+        @submit="handleFound"
+        @not-found="handleNotFound"
       />
 
-      <CoupleStickerPreview
-        v-else
-        :couple-data="coupleData!"
+      <StickerPreview
+        v-if="phase === 'preview'"
+        :attendee-data="attendeeData!"
         @reset="handleReset"
       />
     </main>
 
+    <!-- New Attendee Modal -->
+    <NewAttendeeModal
+      v-if="phase === 'modal'"
+      :phone="pendingPhone"
+      @confirm="handleFound"
+      @cancel="handleCancelModal"
+    />
+
     <!-- Footer -->
-    <footer class="text-center mt-12 text-gray-600">
-      <p class="text-xs opacity-40">Hecho por Christian Donado &amp; Cima Iglesia</p>
+    <footer class="text-center mt-12">
+      <p class="text-xs text-white opacity-40">Hecho por Christian Donado &amp; Cima Iglesia</p>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { CoupleData } from '~/composables/usePrint'
+import type { AttendeeData } from '~/composables/usePrint'
 
-const showPreview = ref(false)
-const coupleData = ref<CoupleData | null>(null)
+type Phase = 'form' | 'modal' | 'preview'
+
+const phase = ref<Phase>('form')
+const pendingPhone = ref('')
+const attendeeData = ref<AttendeeData | null>(null)
 const formRef = ref<any>(null)
 
-const handleSubmit = (data: CoupleData) => {
-  coupleData.value = data
-  showPreview.value = true
+const handleFound = (data: AttendeeData) => {
+  attendeeData.value = data
+  phase.value = 'preview'
+}
+
+const handleNotFound = (phone: string) => {
+  pendingPhone.value = phone
+  phase.value = 'modal'
+}
+
+const handleCancelModal = () => {
+  phase.value = 'form'
 }
 
 const handleReset = () => {
-  showPreview.value = false
-  coupleData.value = null
-  if (formRef.value) {
-    formRef.value.resetForm()
-  }
+  phase.value = 'form'
+  pendingPhone.value = ''
+  attendeeData.value = null
+  if (formRef.value) formRef.value.resetForm()
 }
 
 useHead({
-  title: 'Un Ascenso con Propósito – Evento de Parejas',
+  title: 'Mujeres M&M',
 })
 </script>
 

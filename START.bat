@@ -1,9 +1,9 @@
 @echo off
-title Parejas Event - Un Ascenso con Proposito
+title Mujeres M&M
 cd /d "%~dp0"
 
 echo ============================================
-echo   Un Ascenso con Proposito - Parejas Event
+echo   Mujeres M&M
 echo ============================================
 echo.
 

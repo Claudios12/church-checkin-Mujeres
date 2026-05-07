@@ -1,7 +1,7 @@
 {
-  "name": "church-checkin-parejas",
+  "name": "church-checkin-mujeres",
   "version": "1.0.0",
-  "description": "Couples event check-in and sticker printing",
+  "description": "Women's event check-in and sticker printing",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.3",
-    "@types/node": "^25.2.3"
+    "@types/node": "^25.2.3",
+    "xlsx": "^0.18.5"
   }
 }
