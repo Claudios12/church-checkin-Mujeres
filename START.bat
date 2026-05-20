@@ -10,6 +10,12 @@ echo.
 if not exist ".output" (
     echo Building app for the first time, please wait...
     echo.
+    call bun install
+    if errorlevel 1 (
+        echo ERROR: bun install failed. Run setup.bat first.
+        pause
+        exit /b 1
+    )
     call bun run build
     if errorlevel 1 (
         echo ERROR: Build failed. Run setup.bat first.

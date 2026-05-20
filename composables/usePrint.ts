@@ -30,14 +30,16 @@ export const usePrint = () => {
       .sticker {
         width: 101.6mm;
         height: 50.8mm;
-        background: #ec4899;
+        background: #ec4899 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         border: 1.5pt solid #be185d;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2mm;
-        padding: 4mm;
+        gap: 1.5mm;
+        padding: 3mm 4mm;
         page-break-after: always;
         page-break-inside: avoid;
       }
@@ -49,38 +51,50 @@ export const usePrint = () => {
         gap: 0.5mm;
       }
       .event-title {
-        font-size: 13pt;
+        font-size: 8pt;
         font-weight: bold;
-        color: white;
-        letter-spacing: 1px;
+        color: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        letter-spacing: 2px;
         text-transform: uppercase;
       }
       .event-subtitle {
-        font-size: 7pt;
-        color: rgba(255,255,255,0.85);
+        font-size: 5.5pt;
+        color: rgba(255,255,255,0.85) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         letter-spacing: 0.5px;
       }
       .name-box {
-        background: white;
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         border-radius: 3mm;
         padding: 2mm 6mm;
-        width: 90%;
+        width: 95%;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 10mm;
+        flex: 1;
       }
       .attendee-name {
-        font-size: 11pt;
+        font-size: 22pt;
         font-weight: bold;
-        color: #1f2937;
+        color: #1f2937 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        line-height: 1.1;
+        word-break: break-word;
       }
       .sticker-footer {
-        font-size: 6pt;
-        color: rgba(255,255,255,0.7);
+        font-size: 5.5pt;
+        color: rgba(255,255,255,0.85) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         letter-spacing: 0.5px;
       }
     `

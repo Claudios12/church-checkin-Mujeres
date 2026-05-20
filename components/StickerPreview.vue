@@ -91,8 +91,8 @@ const handlePrint = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 16px;
+  gap: 6px;
+  padding: 12px 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -104,15 +104,15 @@ const handlePrint = () => {
 }
 
 .event-title {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: bold;
   color: white;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .event-subtitle {
-  font-size: 11px;
+  font-size: 9px;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.5px;
 }
@@ -120,26 +120,29 @@ const handlePrint = () => {
 .name-box {
   background: white;
   border-radius: 8px;
-  padding: 8px 24px;
-  width: 88%;
+  padding: 6px 20px;
+  width: 92%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 56px;
+  flex: 1;
 }
 
 .attendee-name {
-  font-size: 16px;
+  font-size: 36px;
   font-weight: bold;
   color: #1f2937;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  word-break: break-word;
 }
 
 .sticker-footer {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.5px;
 }
 </style>

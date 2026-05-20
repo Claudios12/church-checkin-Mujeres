@@ -34,10 +34,15 @@ echo [OK] Bun
 echo.
 
 :: ── Clone or update ──────────────────────────
-if exist "church-checkin-Mujeres" (
+if exist "package.json" (
+    echo Updating repo...
+    git pull
+) else if exist "church-checkin-Mujeres\package.json" (
+    echo Repo already cloned, updating...
     cd church-checkin-Mujeres
     git pull
 ) else (
+    echo Cloning repo...
     git clone https://github.com/Claudios12/church-checkin-Mujeres
     if %errorlevel% neq 0 (
         echo ERROR: git clone failed.
@@ -60,8 +65,19 @@ if %errorlevel% neq 0 ( echo ERROR: nuxt prepare failed. & pause & exit /b 1 )
 call bun run build
 if %errorlevel% neq 0 ( echo ERROR: Build failed. & pause & exit /b 1 )
 
+:: ── Desktop shortcut ──────────────────────────
+set "REPO_DIR=%CD%"
+set "SHORTCUT=%USERPROFILE%\Desktop\Mujeres MM.lnk"
+powershell -NoProfile -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut('%SHORTCUT%'); $s.TargetPath = '%REPO_DIR%\START.bat'; $s.WorkingDirectory = '%REPO_DIR%'; $s.Description = 'Mujeres M&M Check-in'; $s.Save()"
+if exist "%SHORTCUT%" (
+    echo [OK] Acceso directo creado en el escritorio
+) else (
+    echo [WARN] No se pudo crear el acceso directo
+)
+
 echo.
 echo ============================================
-echo   Listo! Ejecuta start.bat para iniciar.
+echo   Listo! Usa el acceso directo en el
+echo   escritorio o ejecuta START.bat
 echo ============================================
 pause
