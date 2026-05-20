@@ -28,6 +28,13 @@ if not exist ".output" (
 
 set NITRO_HOST=0.0.0.0
 set NITRO_PORT=3000
+set ROSTER_PATH=%~dp0data\attendees.json
+
+if not exist "%ROSTER_PATH%" (
+    echo [WARN] Lista de asistentes no encontrada: %ROSTER_PATH%
+    echo        Ejecuta import-roster.bat primero.
+    echo.
+)
 
 echo App starting...
 echo.
