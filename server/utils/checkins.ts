@@ -6,6 +6,7 @@ export interface CheckIn {
   firstName: string
   middleName: string
   lastName: string
+  hasPaid: boolean
   checkedInAt: string
 }
 

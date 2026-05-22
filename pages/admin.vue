@@ -8,12 +8,25 @@
     </header>
 
     <div class="max-w-2xl mx-auto">
-      <!-- Summary card -->
-      <div class="bg-white rounded-2xl shadow-2xl p-6 mb-6 text-center">
-        <p class="text-5xl font-bold text-red-700">{{ checkins.length }}</p>
-        <p class="text-gray-500 mt-1 text-lg">personas registradas</p>
+      <!-- Summary cards -->
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="bg-white rounded-2xl shadow-2xl p-5 text-center">
+          <p class="text-4xl font-bold text-red-700">{{ checkins.length }}</p>
+          <p class="text-gray-500 text-sm mt-1">Total</p>
+        </div>
+        <div class="bg-green-500 rounded-2xl shadow-2xl p-5 text-center">
+          <p class="text-4xl font-bold text-white">{{ paidCount }}</p>
+          <p class="text-green-100 text-sm mt-1">Pagaron</p>
+        </div>
+        <div class="bg-yellow-400 rounded-2xl shadow-2xl p-5 text-center">
+          <p class="text-4xl font-bold text-gray-900">{{ unpaidCount }}</p>
+          <p class="text-yellow-800 text-sm mt-1">Pendiente</p>
+        </div>
+      </div>
+
+      <div class="flex justify-end mb-3">
         <button
-          class="mt-4 px-5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition-all active:scale-95"
+          class="px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-semibold transition-all active:scale-95"
           @click="refresh"
         >
           Actualizar
@@ -29,15 +42,25 @@
           <li
             v-for="(c, i) in checkins"
             :key="i"
-            class="flex items-center justify-between px-6 py-4 border-b last:border-b-0 border-gray-100"
+            class="flex items-center gap-4 px-5 py-4 border-b last:border-b-0 border-gray-100"
           >
-            <div>
-              <p class="font-semibold text-gray-800 text-lg">
-                {{ fullName(c) }}
-              </p>
-              <p class="text-sm text-gray-400">{{ formatTime(c.checkedInAt) }}</p>
+            <!-- Payment dot -->
+            <span
+              class="w-3 h-3 rounded-full flex-shrink-0"
+              :class="c.hasPaid ? 'bg-green-500' : 'bg-yellow-400'"
+            />
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-gray-800 truncate">{{ fullName(c) }}</p>
+              <p class="text-xs text-gray-400">{{ formatTime(c.checkedInAt) }}</p>
             </div>
-            <span class="text-gray-300 text-sm font-mono">••••{{ c.phone.slice(-4) }}</span>
+            <span
+              class="text-xs font-semibold px-2 py-1 rounded-lg flex-shrink-0"
+              :class="c.hasPaid
+                ? 'bg-green-100 text-green-700'
+                : 'bg-yellow-100 text-yellow-700'"
+            >
+              {{ c.hasPaid ? 'Pagó' : 'Pendiente' }}
+            </span>
           </li>
         </ul>
       </div>
@@ -54,6 +77,8 @@ import type { CheckIn } from '~/server/utils/checkins'
 
 const { data, refresh: refreshData } = await useFetch<CheckIn[]>('/api/checkins/list')
 const checkins = computed(() => data.value ?? [])
+const paidCount = computed(() => checkins.value.filter(c => c.hasPaid).length)
+const unpaidCount = computed(() => checkins.value.filter(c => !c.hasPaid).length)
 
 const refresh = () => refreshData()
 

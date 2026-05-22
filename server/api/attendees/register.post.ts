@@ -16,6 +16,7 @@ export default defineEventHandler(async (event) => {
     middleName: '',
     lastName: String(lastName).trim(),
     isNew: true,
+    hasPaid: false,
   }
 
   const roster = await loadRoster()

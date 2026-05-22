@@ -7,6 +7,7 @@ export interface Attendee {
   middleName: string
   lastName: string
   isNew: boolean
+  hasPaid: boolean
 }
 
 function getRosterPath(): string {

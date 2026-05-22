@@ -3,6 +3,7 @@ export interface AttendeeData {
   firstName: string
   middleName: string
   lastName: string
+  hasPaid: boolean
 }
 
 export const usePrint = () => {

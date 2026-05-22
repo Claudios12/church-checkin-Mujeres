@@ -4,6 +4,17 @@
       Vista previa de stickers
     </h2>
 
+    <!-- Payment status banner -->
+    <div
+      class="max-w-sm mx-auto mb-6 rounded-2xl px-6 py-4 text-center font-bold text-xl shadow-lg"
+      :class="props.attendeeData.hasPaid
+        ? 'bg-green-500 text-white'
+        : 'bg-yellow-400 text-gray-900'"
+    >
+      <span v-if="props.attendeeData.hasPaid">✓ Pago confirmado</span>
+      <span v-else>⚠ Pago pendiente</span>
+    </div>
+
     <div class="flex gap-6 justify-center mb-8 flex-wrap">
       <div class="sticker-preview">
         <div class="sticker-header">
@@ -77,6 +88,7 @@ const handlePrint = async () => {
       firstName: props.attendeeData.firstName,
       middleName: props.attendeeData.middleName ?? '',
       lastName: props.attendeeData.lastName,
+      hasPaid: props.attendeeData.hasPaid,
     },
   }).catch(() => {})
 
