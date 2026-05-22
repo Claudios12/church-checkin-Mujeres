@@ -1,4 +1,5 @@
 export interface AttendeeData {
+  phone: string
   firstName: string
   middleName: string
   lastName: string

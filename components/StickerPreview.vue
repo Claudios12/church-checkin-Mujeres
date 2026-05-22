@@ -65,10 +65,20 @@ const nameDisplay = computed(() =>
     .toUpperCase()
 )
 
-const handlePrint = () => {
+const handlePrint = async () => {
   printStickers(props.attendeeData)
   isPrinting.value = true
   countdown.value = autoResetSeconds
+
+  await $fetch('/api/checkins/record', {
+    method: 'POST',
+    body: {
+      phone: props.attendeeData.phone,
+      firstName: props.attendeeData.firstName,
+      middleName: props.attendeeData.middleName ?? '',
+      lastName: props.attendeeData.lastName,
+    },
+  }).catch(() => {})
 
   const interval = setInterval(() => {
     countdown.value--
