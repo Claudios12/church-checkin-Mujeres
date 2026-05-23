@@ -24,13 +24,29 @@
         </div>
       </div>
 
-      <div class="flex justify-end mb-3">
+      <div class="flex justify-end gap-3 mb-3">
+        <button
+          class="px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-semibold transition-all active:scale-95 disabled:opacity-50"
+          :disabled="merging"
+          @click="mergeDuplicates"
+        >
+          {{ merging ? 'Fusionando…' : 'Fusionar duplicados' }}
+        </button>
         <button
           class="px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-semibold transition-all active:scale-95"
           @click="refresh"
         >
           Actualizar
         </button>
+      </div>
+
+      <!-- Merge result banner -->
+      <div
+        v-if="mergeResult"
+        class="mb-4 px-5 py-3 rounded-xl text-sm font-semibold text-center"
+        :class="mergeResult.error ? 'bg-red-100 text-red-700' : 'bg-white/90 text-gray-700'"
+      >
+        {{ mergeResult.message }}
       </div>
 
       <!-- Attendee list -->
@@ -81,6 +97,31 @@ const paidCount = computed(() => checkins.value.filter(c => c.hasPaid).length)
 const unpaidCount = computed(() => checkins.value.filter(c => !c.hasPaid).length)
 
 const refresh = () => refreshData()
+
+const merging = ref(false)
+const mergeResult = ref<{ message: string; error?: boolean } | null>(null)
+
+async function mergeDuplicates() {
+  merging.value = true
+  mergeResult.value = null
+  try {
+    const res = await $fetch<{ removedCheckins: number; removedRoster: number }>(
+      '/api/attendees/merge',
+      { method: 'POST' }
+    )
+    const parts: string[] = []
+    if (res.removedCheckins > 0) parts.push(`${res.removedCheckins} registros duplicados eliminados`)
+    if (res.removedRoster > 0) parts.push(`${res.removedRoster} asistentes duplicados fusionados`)
+    mergeResult.value = {
+      message: parts.length ? parts.join(' · ') : 'No se encontraron duplicados'
+    }
+    await refreshData()
+  } catch {
+    mergeResult.value = { message: 'Error al fusionar duplicados', error: true }
+  } finally {
+    merging.value = false
+  }
+}
 
 const fullName = (c: CheckIn) =>
   [c.firstName, c.middleName, c.lastName].filter(Boolean).join(' ')

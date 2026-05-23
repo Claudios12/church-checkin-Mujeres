@@ -56,14 +56,6 @@
     "hasPaid": true
   },
   {
-    "phone": "3228388584",
-    "firstName": "Amelia",
-    "middleName": "",
-    "lastName": "Escobar",
-    "isNew": false,
-    "hasPaid": true
-  },
-  {
     "phone": "3144741315",
     "firstName": "Amparo",
     "middleName": "",
@@ -301,7 +293,7 @@
     "middleName": "Nubia",
     "lastName": "León",
     "isNew": false,
-    "hasPaid": false
+    "hasPaid": true
   },
   {
     "phone": "3144382671",
@@ -398,14 +390,6 @@
     "lastName": "Lievano",
     "isNew": false,
     "hasPaid": true
-  },
-  {
-    "phone": "3108786076",
-    "firstName": "Claudia",
-    "middleName": "",
-    "lastName": "Velasco",
-    "isNew": false,
-    "hasPaid": false
   },
   {
     "phone": "3107691312",
@@ -708,14 +692,6 @@
     "firstName": "Gabriela",
     "middleName": "",
     "lastName": "Ardila",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
-    "phone": "3204783299",
-    "firstName": "Geraldine",
-    "middleName": "Daniela",
-    "lastName": "Cabrera",
     "isNew": false,
     "hasPaid": false
   },
@@ -1576,14 +1552,6 @@
     "hasPaid": false
   },
   {
-    "phone": "3204990902",
-    "firstName": "Myriam",
-    "middleName": "",
-    "lastName": "Martin",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
     "phone": "3134199610",
     "firstName": "Nancy",
     "middleName": "",
@@ -1696,14 +1664,6 @@
     "hasPaid": true
   },
   {
-    "phone": "3133069090",
-    "firstName": "Nicole",
-    "middleName": "",
-    "lastName": "Rodriguez",
-    "isNew": false,
-    "hasPaid": true
-  },
-  {
     "phone": "3103868029",
     "firstName": "Noely",
     "middleName": "",
@@ -1744,14 +1704,6 @@
     "hasPaid": true
   },
   {
-    "phone": "3102083032",
-    "firstName": "Nubia",
-    "middleName": "",
-    "lastName": "Leon",
-    "isNew": false,
-    "hasPaid": true
-  },
-  {
     "phone": "3118803307",
     "firstName": "Olga",
     "middleName": "Maria",
@@ -1764,14 +1716,6 @@
     "firstName": "Olga",
     "middleName": "Lucia",
     "lastName": "Mendieta",
-    "isNew": false,
-    "hasPaid": true
-  },
-  {
-    "phone": "3105670029",
-    "firstName": "Olga",
-    "middleName": "",
-    "lastName": "Carvajal",
     "isNew": false,
     "hasPaid": true
   },
@@ -1944,26 +1888,10 @@
     "hasPaid": true
   },
   {
-    "phone": "3123278981",
-    "firstName": "Sara",
-    "middleName": "",
-    "lastName": "Granados",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
     "phone": "3154924158",
     "firstName": "Sara",
     "middleName": "Valeria",
     "lastName": "Rincon",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
-    "phone": "3132664912",
-    "firstName": "Saray",
-    "middleName": "",
-    "lastName": "Padilla",
     "isNew": false,
     "hasPaid": false
   },
@@ -2108,22 +2036,6 @@
     "firstName": "Viviana",
     "middleName": "",
     "lastName": "Pineda",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
-    "phone": "3123278981",
-    "firstName": "Ximena",
-    "middleName": "",
-    "lastName": "Granados",
-    "isNew": false,
-    "hasPaid": false
-  },
-  {
-    "phone": "3123278981",
-    "firstName": "Ximena",
-    "middleName": "",
-    "lastName": "Bitti",
     "isNew": false,
     "hasPaid": false
   },

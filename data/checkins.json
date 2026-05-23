@@ -1,16 +1,17 @@
 [
   {
+    "phone": "3183812757",
+    "firstName": "Patricia",
+    "middleName": "",
+    "lastName": "Almonacid",
+    "hasPaid": true,
+    "checkedInAt": "2026-05-23T00:58:45.396Z"
+  },
+  {
     "phone": "3137634390",
     "firstName": "Christian",
     "middleName": "",
     "lastName": "Donado",
     "checkedInAt": "2026-05-22T23:10:58.200Z"
-  },
-  {
-    "phone": "3183812757",
-    "firstName": "Patricia",
-    "middleName": "",
-    "lastName": "Almonacid",
-    "checkedInAt": "2026-05-22T23:22:50.037Z"
   }
 ]
